@@ -1,7 +1,7 @@
 import csv
 import click
 from .models import Opinion
-from . import db
+from . import app, db
 
 @app.cli.command('load_opinions')
 def load_opinions_command():
