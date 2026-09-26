@@ -4,6 +4,7 @@ from .models import Opinion
 from .forms import OpinionForm
 from flask import abort, redirect, render_template, url_for
 from random import randrange
+
 @app.route('/add', methods=['GET', 'POST'])
 def add_opinion_view():
     form = OpinionForm()
@@ -21,6 +22,7 @@ def opinion_view(id):
     opinion = Opinion.query.get_or_404(id)
     return render_template('opinion.html', opinion=opinion)
 
+
 @app.route('/')
 def index_view():
     quantity = Opinion.query.count()
@@ -30,4 +32,4 @@ def index_view():
         abort(500)
     offset_value = randrange(quantity)
     opinion = Opinion.query.offset(offset_value).first()
-    return render_template('opinion.html', opinion=opinion) 
+    return render_template('opinion.html', opinion=opinion)
